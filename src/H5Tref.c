@@ -145,24 +145,25 @@ H5T__ref_set_loc(const H5T_t *dt, H5VL_object_t *file, H5T_loc_t loc)
 
                 /* Set up the function pointers to access the reference in memory */
                 dt->shared->u.atomic.u.r.cls = &H5T_ref_mem_g;
-
-            } else if(dt->shared->u.atomic.u.r.rtype == H5R_OBJECT1) {
+            } /* end if */
+            else if(dt->shared->u.atomic.u.r.rtype == H5R_OBJECT1) {
                 /* Size in memory, disk size is different */
                 dt->shared->size = H5T_REF_OBJ_MEM_SIZE;
                 dt->shared->u.atomic.prec = 8 * dt->shared->size;
 
                 /* Unused for now */
                 dt->shared->u.atomic.u.r.cls = NULL;
-
-            } else if(dt->shared->u.atomic.u.r.rtype == H5R_DATASET_REGION1) {
+            } /* end else-if */
+            else if(dt->shared->u.atomic.u.r.rtype == H5R_DATASET_REGION1) {
                 /* Size in memory, disk size is different */
                 dt->shared->size = H5T_REF_DSETREG_MEM_SIZE;
                 dt->shared->u.atomic.prec = 8 * dt->shared->size;
 
                 /* Unused for now */
                 dt->shared->u.atomic.u.r.cls = NULL;
-
-            }
+            } /* end else-if */
+            else
+                HGOTO_ERROR(H5E_DATATYPE, H5E_BADTYPE, FAIL, "invalid location")
             break;
 
         case H5T_LOC_DISK: /* Disk based reference datatype */
@@ -190,8 +191,8 @@ H5T__ref_set_loc(const H5T_t *dt, H5VL_object_t *file, H5T_loc_t loc)
 
                 /* Set up the function pointers to access the reference in memory */
                 dt->shared->u.atomic.u.r.cls = &H5T_ref_obj_disk_g;
-
-            } else if(dt->shared->u.atomic.u.r.rtype == H5R_DATASET_REGION1) {
+            } /* end if */
+            else if(dt->shared->u.atomic.u.r.rtype == H5R_DATASET_REGION1) {
                 H5F_t *f;
 
                 /* We should assert here that the terminal connector is H5VL_NATIVE once
@@ -207,8 +208,8 @@ H5T__ref_set_loc(const H5T_t *dt, H5VL_object_t *file, H5T_loc_t loc)
 
                 /* Set up the function pointers to access the reference in memory */
                 dt->shared->u.atomic.u.r.cls = &H5T_ref_dsetreg_disk_g;
-
-            } else {
+            } /* end else-if */
+            else {
                 H5VL_file_cont_info_t cont_info = {H5VL_CONTAINER_INFO_VERSION, 0, 0, 0};
                 size_t ref_encode_size;
                 H5R_ref_priv_t fixed_ref;
@@ -253,8 +254,7 @@ H5T__ref_set_loc(const H5T_t *dt, H5VL_object_t *file, H5T_loc_t loc)
 
             break;
 
-        case H5T_LOC_MAXLOC:
-            /* MAXLOC is invalid */
+        case H5T_LOC_MAXLOC:    /* MAXLOC is invalid */
         default:
             HGOTO_ERROR(H5E_DATATYPE, H5E_BADRANGE, FAIL, "invalid reference datatype location")
     } /* end switch */
@@ -318,14 +318,15 @@ H5T__ref_mem_getsize(H5VL_object_t H5_ATTR_UNUSED *src_file, const void *src_buf
         /* Determine encoding size */
         if(H5R__encode(H5F_ACTUAL_NAME(src_f), src_ref, NULL, &ret_value, flags) < 0)
             HGOTO_ERROR(H5E_REFERENCE, H5E_CANTENCODE, 0, "unable to determine encoding size")
-    } else {
+    } /* end if */
+    else {
         /* Can do a direct copy and skip blob decoding */
         if(src_ref->type == (int8_t)H5R_OBJECT2)
             *dst_copy = TRUE;
 
         /* Get cached encoding size */
         ret_value = src_ref->encode_size;
-    }
+    } /* end else */
 
 done:
     FUNC_LEAVE_NOAPI(ret_value)
@@ -429,16 +430,19 @@ H5T__ref_mem_write(H5VL_object_t *src_file, const void *src_buf, size_t src_size
     HDmemset(dst_buf, 0, dst_size);
 
     switch(src_type) {
-        case H5R_OBJECT1: {
-            size_t token_size = H5F_SIZEOF_ADDR(src_f);
+        case H5R_OBJECT1:
+            {
+                size_t token_size = H5F_SIZEOF_ADDR(src_f);
 
             if(H5R__create_object((const H5VL_token_t *)src_buf, token_size, dst_ref) < 0)
                 HGOTO_ERROR(H5E_REFERENCE, H5E_CANTCREATE, FAIL, "unable to create object reference")
         }
             break;
-        case H5R_DATASET_REGION1: {
-            const struct H5Tref_dsetreg *src_reg = (const struct H5Tref_dsetreg *)src_buf;
-            size_t token_size = H5F_SIZEOF_ADDR(src_f);
+
+        case H5R_DATASET_REGION1:
+            {
+                const struct H5Tref_dsetreg *src_reg = (const struct H5Tref_dsetreg *)src_buf;
+                size_t token_size = H5F_SIZEOF_ADDR(src_f);
 
             if(H5R__create_region(&src_reg->token, token_size, src_reg->space, dst_ref) < 0)
                 HGOTO_ERROR(H5E_REFERENCE, H5E_CANTCREATE, FAIL, "unable to create region reference")
@@ -463,7 +467,7 @@ H5T__ref_mem_write(H5VL_object_t *src_file, const void *src_buf, size_t src_size
         default:
             HDassert("unknown reference type" && 0);
             HGOTO_ERROR(H5E_REFERENCE, H5E_UNSUPPORTED, FAIL, "internal error (unknown reference type)")
-    }
+    } /* end switch */
 
     /* If no filename set, this is not an external reference */
     if(NULL == H5R_REF_FILENAME(dst_ref)) {
@@ -474,7 +478,7 @@ H5T__ref_mem_write(H5VL_object_t *src_file, const void *src_buf, size_t src_size
         /* Attach loc ID to reference and hold reference to it */
         if(H5R__set_loc_id(dst_ref, file_id, TRUE) < 0)
             HGOTO_ERROR(H5E_REFERENCE, H5E_CANTSET, FAIL, "unable to attach location id to reference")
-    }
+    } /* end if */
 
 done:
     if((file_id != H5I_INVALID_HID) && (H5I_dec_ref(file_id) < 0))
@@ -518,13 +522,14 @@ H5T__ref_disk_getsize(H5VL_object_t H5_ATTR_UNUSED *src_file, const void *src_bu
         *dst_copy = TRUE;
 
         ret_value = src_size;
-    } else {
+    } /* end if */
+    else {
         /* Retrieve encoded data size */
         UINT32DECODE(p, ret_value);
 
         /* Add size of the header */
         ret_value += H5R_ENCODE_HEADER_SIZE;
-    }
+    } /* end else */
 
 done:
     FUNC_LEAVE_NOAPI(ret_value)
@@ -709,7 +714,7 @@ H5T__ref_obj_disk_read(H5VL_object_t *src_file, const void *src_buf, size_t src_
 
     /* Get object address */
     if(H5R__decode_token_obj_compat((const unsigned char *)src_buf, &src_size,
-        (unsigned char *)dst_buf, H5F_SIZEOF_ADDR(src_f)) < 0)
+            (H5VL_token_t *)dst_buf, H5F_SIZEOF_ADDR(src_f)) < 0)
         HGOTO_ERROR(H5E_REFERENCE, H5E_CANTDECODE, FAIL, "unable to get object address")
 
 done:
@@ -820,8 +825,7 @@ H5T_ref_reclaim(void *elem, const H5T_t *dt)
     HDassert(elem);
     HDassert(dt && (dt->shared->type == H5T_REFERENCE));
 
-    if(dt->shared->u.atomic.u.r.opaque
-        && (H5R__destroy((H5R_ref_priv_t *)elem) < 0))
+    if(dt->shared->u.atomic.u.r.opaque && H5R__destroy((H5R_ref_priv_t *)elem) < 0)
         HGOTO_ERROR(H5E_REFERENCE, H5E_CANTFREE, FAIL, "cannot free reference")
 
 done:

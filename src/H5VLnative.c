@@ -112,6 +112,9 @@ static H5VL_class_t H5VL_native_cls_g = {
         H5VL__native_object_specific,               /* specific     */
         H5VL__native_object_optional                /* optional     */
     },
+    {   /* introspect_cls */
+        H5VL__native_introspect_opt_query,          /* opt_query    */
+    },
     {   /* request_cls */
         NULL,                                       /* wait         */
         NULL,                                       /* notify       */

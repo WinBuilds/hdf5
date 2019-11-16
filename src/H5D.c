@@ -961,7 +961,7 @@ H5Dformat_convert(hid_t dset_id)
         HGOTO_ERROR(H5E_DATASET, H5E_CANTSET, FAIL, "can't set collective metadata read info")
 
     /* Convert the dataset */
-    if(H5VL_dataset_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_DATASET_FORMAT_CONVERT) < 0)
+    if(H5VL_dataset_optional(vol_obj, H5VL_DATASET_OPT_FORMAT_CONVERT, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL) < 0)
         HGOTO_ERROR(H5E_DATASET, H5E_INTERNAL, FAIL, "can't convert dataset format")
 
 done:
@@ -997,7 +997,7 @@ H5Dget_chunk_index_type(hid_t dset_id, H5D_chunk_index_t *idx_type)
         HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "idx_type parameter cannot be NULL")
 
     /* Get the chunk indexing type */
-    if(H5VL_dataset_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_DATASET_GET_CHUNK_INDEX_TYPE, idx_type) < 0)
+    if(H5VL_dataset_optional(vol_obj, H5VL_DATASET_OPT_GET_CHUNK_INDEX_TYPE, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, idx_type) < 0)
         HGOTO_ERROR(H5E_DATASET, H5E_CANTGET, FAIL, "can't get chunk index type")
 
 done:
@@ -1038,7 +1038,7 @@ H5Dget_chunk_storage_size(hid_t dset_id, const hsize_t *offset, hsize_t *chunk_n
         HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "chunk_nbytes parameter cannot be NULL")
 
     /* Get the dataset creation property list */
-    if(H5VL_dataset_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_DATASET_GET_CHUNK_STORAGE_SIZE, offset, chunk_nbytes) < 0)
+    if(H5VL_dataset_optional(vol_obj, H5VL_DATASET_OPT_GET_CHUNK_STORAGE_SIZE, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, offset, chunk_nbytes) < 0)
         HGOTO_ERROR(H5E_DATASET, H5E_CANTGET, FAIL, "can't get storage size of chunk")
 
 done:
@@ -1083,7 +1083,7 @@ H5Dget_num_chunks(hid_t dset_id, hid_t fspace_id, hsize_t *nchunks)
         HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "invalid argument (null)")
 
     /* Get the number of written chunks */
-    if(H5VL_dataset_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_DATASET_GET_NUM_CHUNKS, fspace_id, nchunks) < 0)
+    if(H5VL_dataset_optional(vol_obj, H5VL_DATASET_OPT_GET_NUM_CHUNKS, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, fspace_id, nchunks) < 0)
         HGOTO_ERROR(H5E_DATASET, H5E_CANTGET, FAIL, "Can't get number of chunks")
 
 done:
@@ -1131,7 +1131,7 @@ H5Dget_chunk_info(hid_t dset_id, hid_t fspace_id, hsize_t chk_index, hsize_t *of
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "invalid dataset identifier")
 
     /* Get the number of written chunks to check range */
-    if(H5VL_dataset_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_DATASET_GET_NUM_CHUNKS, fspace_id, &nchunks) < 0)
+    if(H5VL_dataset_optional(vol_obj, H5VL_DATASET_OPT_GET_NUM_CHUNKS, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, fspace_id, &nchunks) < 0)
         HGOTO_ERROR(H5E_DATASET, H5E_CANTGET, FAIL, "Can't get number of chunks")
 
     /* Check range for chunk index */
@@ -1139,7 +1139,7 @@ H5Dget_chunk_info(hid_t dset_id, hid_t fspace_id, hsize_t chk_index, hsize_t *of
         HGOTO_ERROR(H5E_DATASET, H5E_BADRANGE, FAIL, "chunk index is out of range")
 
     /* Call private function to get the chunk info given the chunk's index */
-    if(H5VL_dataset_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_DATASET_GET_CHUNK_INFO_BY_IDX, fspace_id, chk_index, offset, filter_mask, addr, size) < 0)
+    if(H5VL_dataset_optional(vol_obj, H5VL_DATASET_OPT_GET_CHUNK_INFO_BY_IDX, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, fspace_id, chk_index, offset, filter_mask, addr, size) < 0)
         HGOTO_ERROR(H5E_DATASET, H5E_CANTGET, FAIL, "Can't get chunk info by index")
 
 done:
@@ -1186,7 +1186,7 @@ H5Dget_chunk_info_by_coord(hid_t dset_id, const hsize_t *offset, unsigned *filte
         HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "invalid argument (null)")
 
     /* Call private function to get the chunk info given the chunk's index */
-    if(H5VL_dataset_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_DATASET_GET_CHUNK_INFO_BY_COORD, offset, filter_mask, addr, size) < 0)
+    if(H5VL_dataset_optional(vol_obj, H5VL_DATASET_OPT_GET_CHUNK_INFO_BY_COORD, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, offset, filter_mask, addr, size) < 0)
         HGOTO_ERROR(H5E_DATASET, H5E_CANTGET, FAIL, "Can't get chunk info by its logical coordinates")
 
 done:

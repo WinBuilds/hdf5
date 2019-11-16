@@ -286,7 +286,7 @@ H5Oopen_by_addr(hid_t loc_id, haddr_t addr)
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, H5I_INVALID_HID, "invalid location identifier")
 
     /* Retrieve file from VOL object */
-    if(NULL == (f = (H5F_t *)H5VL_object_data(vol_obj_file)))
+    if(NULL == (f = (H5F_t *)H5VL_object_data((const H5VL_object_t *)vol_obj_file)))
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, H5I_INVALID_HID, "invalid VOL object")
 
     /* This is a native specific routine that requires serialization of the token */
@@ -594,7 +594,7 @@ H5Oget_info2(hid_t loc_id, H5O_info_t *oinfo, unsigned fields)
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "invalid location identifier")
 
     /* Retrieve the object's information */
-    if(H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_GET_INFO, &loc_params, oinfo, fields) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_GET_INFO, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params, oinfo, fields) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTGET, FAIL, "can't get info for object")
 
 done:
@@ -652,7 +652,7 @@ H5Oget_info_by_name2(hid_t loc_id, const char *name, H5O_info_t *oinfo,
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "invalid location identifier")
 
     /* Retrieve the object's information */
-    if(H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_GET_INFO, &loc_params, oinfo, fields) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_GET_INFO, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params, oinfo, fields) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTGET, FAIL, "can't get info for object: '%s'", name)
 
 done:
@@ -717,7 +717,7 @@ H5Oget_info_by_idx2(hid_t loc_id, const char *group_name, H5_index_t idx_type,
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "invalid location identifier")
 
     /* Retrieve the object's information */
-    if(H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_GET_INFO, &loc_params, oinfo, fields) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_GET_INFO, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params, oinfo, fields) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTGET, FAIL, "can't get info for object")
 
 done:
@@ -765,7 +765,7 @@ H5Oset_comment(hid_t obj_id, const char *comment)
     loc_params.obj_type = H5I_get_type(obj_id);
 
     /* (Re)set the object's comment */
-    if(H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_SET_COMMENT, &loc_params, comment) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_SET_COMMENT, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params, comment) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTSET, FAIL, "can't set comment for object")
 
 done:
@@ -820,7 +820,7 @@ H5Oset_comment_by_name(hid_t loc_id, const char *name, const char *comment,
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "invalid location identifier")
 
     /* (Re)set the object's comment */
-    if(H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_SET_COMMENT, &loc_params, comment) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_SET_COMMENT, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params, comment) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTSET, FAIL, "can't set comment for object: '%s'", name)
 
 done:
@@ -863,7 +863,7 @@ H5Oget_comment(hid_t obj_id, char *comment, size_t bufsize)
     loc_params.obj_type     = H5I_get_type(obj_id);
 
     /* Retrieve the object's comment */
-    if(H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_GET_COMMENT, &loc_params, comment, bufsize, &ret_value) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_GET_COMMENT, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params, comment, bufsize, &ret_value) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTGET, (-1), "can't get comment for object")
 
 done:
@@ -917,7 +917,7 @@ H5Oget_comment_by_name(hid_t loc_id, const char *name, char *comment, size_t buf
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, (-1), "invalid location identifier")
 
     /* Retrieve the object's comment */
-    if(H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_GET_COMMENT, &loc_params, comment, bufsize, &ret_value) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_GET_COMMENT, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params, comment, bufsize, &ret_value) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTGET, (-1), "can't get comment for object: '%s'", name)
 
 done:
@@ -1204,7 +1204,7 @@ H5Odisable_mdc_flushes(hid_t object_id)
     loc_params.obj_type = H5I_get_type(object_id);
 
     /* Cork the object */
-    if(H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_DISABLE_MDC_FLUSHES, &loc_params) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_DISABLE_MDC_FLUSHES, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTCORK, FAIL, "unable to cork object");
 
 done:
@@ -1273,7 +1273,7 @@ H5Oenable_mdc_flushes(hid_t object_id)
     loc_params.obj_type = H5I_get_type(object_id);
 
     /* Uncork the object */
-    if (H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_ENABLE_MDC_FLUSHES, &loc_params) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_ENABLE_MDC_FLUSHES, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTUNCORK, FAIL, "unable to uncork object");
 
 done:
@@ -1351,7 +1351,7 @@ H5Oare_mdc_flushes_disabled(hid_t object_id, hbool_t *are_disabled)
     loc_params.obj_type = H5I_get_type(object_id);
 
     /* Get the cork status */
-    if (H5VL_object_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_OBJECT_ARE_MDC_FLUSHES_DISABLED, &loc_params, are_disabled) < 0)
+    if(H5VL_object_optional(vol_obj, H5VL_OBJECT_OPT_ARE_MDC_FLUSHES_DISABLED, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, &loc_params, are_disabled) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_CANTGET, FAIL, "unable to retrieve object's cork status");
 
 done:

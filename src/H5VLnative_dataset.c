@@ -388,17 +388,16 @@ done:
  *-------------------------------------------------------------------------
  */
 herr_t
-H5VL__native_dataset_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
-    void H5_ATTR_UNUSED **req, va_list arguments)
+H5VL__native_dataset_optional(void *obj, H5VL_dataset_optional_t optional_type,
+    hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR_UNUSED **req, va_list arguments)
 {
     H5D_t *dset = NULL;             /* Dataset */
-    H5VL_native_dataset_optional_t optional_type = HDva_arg(arguments, H5VL_native_dataset_optional_t);
     herr_t ret_value = SUCCEED;    /* Return value */
 
     FUNC_ENTER_PACKAGE
 
     switch(optional_type) {
-        case H5VL_NATIVE_DATASET_FORMAT_CONVERT:
+        case H5VL_DATASET_OPT_FORMAT_CONVERT:
             {   /* H5Dformat_convert */
                 dset = (H5D_t *)obj;
 
@@ -433,7 +432,7 @@ H5VL__native_dataset_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
                 break;
             }
 
-        case H5VL_NATIVE_DATASET_GET_CHUNK_INDEX_TYPE:
+        case H5VL_DATASET_OPT_GET_CHUNK_INDEX_TYPE:
             {   /* H5Dget_chunk_index_type */
                 H5D_chunk_index_t *idx_type = HDva_arg(arguments, H5D_chunk_index_t *);
 
@@ -449,7 +448,7 @@ H5VL__native_dataset_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
                 break;
             }
 
-        case H5VL_NATIVE_DATASET_GET_CHUNK_STORAGE_SIZE:
+        case H5VL_DATASET_OPT_GET_CHUNK_STORAGE_SIZE:
             {   /* H5Dget_chunk_storage_size */
                 hsize_t *offset = HDva_arg(arguments, hsize_t *);
                 hsize_t *chunk_nbytes = HDva_arg(arguments, hsize_t *);
@@ -467,7 +466,7 @@ H5VL__native_dataset_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
                 break;
             }
 
-        case H5VL_NATIVE_DATASET_GET_NUM_CHUNKS:
+        case H5VL_DATASET_OPT_GET_NUM_CHUNKS:
             {   /* H5Dget_num_chunks */
                 const H5S_t *space    = NULL;
                 hid_t        space_id = HDva_arg(arguments, hid_t);
@@ -496,7 +495,7 @@ H5VL__native_dataset_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
                 break;
             }
 
-        case H5VL_NATIVE_DATASET_GET_CHUNK_INFO_BY_IDX:
+        case H5VL_DATASET_OPT_GET_CHUNK_INFO_BY_IDX:
             {   /* H5Dget_chunk_info */
                 const H5S_t *space = NULL;
                 hid_t        space_id    = HDva_arg(arguments, hid_t);
@@ -528,7 +527,7 @@ H5VL__native_dataset_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
                 break;
             }
 
-        case H5VL_NATIVE_DATASET_GET_CHUNK_INFO_BY_COORD:
+        case H5VL_DATASET_OPT_GET_CHUNK_INFO_BY_COORD:
             {   /* H5Dget_chunk_info_by_coord */
                 hsize_t  *offset      = HDva_arg(arguments, hsize_t *);
                 unsigned *filter_mask = HDva_arg(arguments, unsigned *);
@@ -550,7 +549,7 @@ H5VL__native_dataset_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
                 break;
             }
 
-        case H5VL_NATIVE_DATASET_CHUNK_READ:
+        case H5VL_DATASET_OPT_CHUNK_READ:
             {   /* H5Dread_chunk */
                 const       hsize_t *offset     = HDva_arg(arguments, hsize_t *);
                 uint32_t   *filters             = HDva_arg(arguments, uint32_t *);
@@ -578,7 +577,7 @@ H5VL__native_dataset_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
                 break;
             }
 
-        case H5VL_NATIVE_DATASET_CHUNK_WRITE:
+        case H5VL_DATASET_OPT_CHUNK_WRITE:
             {   /* H5Dwrite_chunk */
                 uint32_t        filters             = HDva_arg(arguments, uint32_t);
                 const  hsize_t *offset              = HDva_arg(arguments, const hsize_t *);

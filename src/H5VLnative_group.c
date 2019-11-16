@@ -266,19 +266,17 @@ done:
  *-------------------------------------------------------------------------
  */
 herr_t
-H5VL__native_group_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
-    void H5_ATTR_UNUSED **req, va_list arguments)
+H5VL__native_group_optional(void *obj, H5VL_group_optional_t optional_type,
+    hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR_UNUSED **req, va_list arguments)
 {
-    H5VL_native_group_optional_t optional_type;
     herr_t ret_value = SUCCEED;    /* Return value */
 
     FUNC_ENTER_PACKAGE
 
-    optional_type = HDva_arg(arguments, H5VL_native_group_optional_t);
     switch(optional_type) {
 #ifndef H5_NO_DEPRECATED_SYMBOLS
         /* H5Giterate (deprecated) */
-        case H5VL_NATIVE_GROUP_ITERATE_OLD:
+        case H5VL_GROUP_OPT_ITERATE_OLD:
             {
                 const H5VL_loc_params_t *loc_params = HDva_arg(arguments, const H5VL_loc_params_t *);
                 hsize_t idx = HDva_arg(arguments, hsize_t);
@@ -299,7 +297,7 @@ H5VL__native_group_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
             }
 
         /* H5Gget_objinfo (deprecated) */
-        case H5VL_NATIVE_GROUP_GET_OBJINFO:
+        case H5VL_GROUP_OPT_GET_OBJINFO:
             {
                 const H5VL_loc_params_t *loc_params = HDva_arg(arguments, const H5VL_loc_params_t *);
                 hbool_t follow_link = (hbool_t)HDva_arg(arguments, unsigned);

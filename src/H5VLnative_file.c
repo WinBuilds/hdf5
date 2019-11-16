@@ -305,15 +305,6 @@ H5VL__native_file_specific(void *obj, H5VL_file_specific_t specific_type,
     FUNC_ENTER_PACKAGE
 
     switch(specific_type) {
-        /* Finalize H5Fopen */
-        case H5VL_FILE_POST_OPEN:
-            {
-                /* Call package routine */
-                if(H5F__post_open((H5F_t *)obj) < 0)
-                    HGOTO_ERROR(H5E_FILE, H5E_CANTINIT, FAIL, "can't finish opening file")
-                break;
-            }
-
         /* H5Fflush */
         case H5VL_FILE_FLUSH:
             {
@@ -437,10 +428,10 @@ done:
  *-------------------------------------------------------------------------
  */
 herr_t
-H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR_UNUSED **req, va_list arguments)
+H5VL__native_file_optional(void *obj, H5VL_file_optional_t optional_type,
+    hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR_UNUSED **req, va_list arguments)
 {
     H5F_t *f = NULL;           /* File */
-    H5VL_native_file_optional_t optional_type = HDva_arg(arguments, H5VL_native_file_optional_t);
     herr_t ret_value = SUCCEED;    /* Return value */
 
     FUNC_ENTER_PACKAGE
@@ -448,7 +439,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
     f = (H5F_t *)obj;
     switch(optional_type) {
         /* H5Fget_filesize */
-        case H5VL_NATIVE_FILE_GET_SIZE:
+        case H5VL_FILE_OPT_GET_SIZE:
             {
                 haddr_t     max_eof_eoa;            /* Maximum of the EOA & EOF */
                 haddr_t     base_addr;              /* Base address for the file */
@@ -467,7 +458,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_file_image */
-        case H5VL_NATIVE_FILE_GET_FILE_IMAGE:
+        case H5VL_FILE_OPT_GET_FILE_IMAGE:
             {
                 void       *buf_ptr   = HDva_arg(arguments, void *);
                 ssize_t    *ret       = HDva_arg(arguments, ssize_t *);
@@ -480,7 +471,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_freespace */
-        case H5VL_NATIVE_FILE_GET_FREE_SPACE:
+        case H5VL_FILE_OPT_GET_FREE_SPACE:
             {
                 hsize_t     tot_space;  /* Amount of free space in the file */
                 hssize_t    *ret = HDva_arg(arguments, hssize_t *);
@@ -493,7 +484,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_free_sections */
-        case H5VL_NATIVE_FILE_GET_FREE_SECTIONS:
+        case H5VL_FILE_OPT_GET_FREE_SECTIONS:
             {
                 H5F_sect_info_t *sect_info = HDva_arg(arguments, H5F_sect_info_t *);
                 ssize_t         *ret       = HDva_arg(arguments, ssize_t *);
@@ -507,7 +498,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_info1/2 */
-        case H5VL_NATIVE_FILE_GET_INFO:
+        case H5VL_FILE_OPT_GET_INFO:
             {
                 H5I_type_t  type   = (H5I_type_t)HDva_arg(arguments, int); /* enum work-around */
                 H5F_info2_t *finfo = HDva_arg(arguments, H5F_info2_t *);
@@ -526,7 +517,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_mdc_config */
-        case H5VL_NATIVE_FILE_GET_MDC_CONF:
+        case H5VL_FILE_OPT_GET_MDC_CONF:
             {
                 H5AC_cache_config_t *config_ptr = HDva_arg(arguments, H5AC_cache_config_t *);
 
@@ -537,7 +528,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_mdc_hit_rate */
-        case H5VL_NATIVE_FILE_GET_MDC_HR:
+        case H5VL_FILE_OPT_GET_MDC_HR:
             {
                 double *hit_rate_ptr = HDva_arg(arguments, double *);
 
@@ -548,7 +539,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_mdc_size */
-        case H5VL_NATIVE_FILE_GET_MDC_SIZE:
+        case H5VL_FILE_OPT_GET_MDC_SIZE:
             {
                 size_t *max_size_ptr        = HDva_arg(arguments, size_t *);
                 size_t *min_clean_size_ptr  = HDva_arg(arguments, size_t *);
@@ -567,7 +558,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_vfd_handle */
-        case H5VL_NATIVE_FILE_GET_VFD_HANDLE:
+        case H5VL_FILE_OPT_GET_VFD_HANDLE:
             {
                 void **file_handle  = HDva_arg(arguments, void **);
                 hid_t  fapl_id      = HDva_arg(arguments, hid_t);
@@ -579,7 +570,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Iget_file_id */
-        case H5VL_NATIVE_FILE_GET_FILE_ID:
+        case H5VL_FILE_OPT_GET_FILE_ID:
             {
                 H5I_type_t  type = (H5I_type_t)HDva_arg(arguments, int); /* enum work-around */
                 hbool_t     app_ref = (hbool_t)HDva_arg(arguments, int);
@@ -593,7 +584,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fclear_elink_file_cache */
-        case H5VL_NATIVE_FILE_CLEAR_ELINK_CACHE:
+        case H5VL_FILE_OPT_CLEAR_ELINK_CACHE:
             {
                 /* Release the EFC */
                 if(f->shared->efc)
@@ -603,7 +594,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Freset_mdc_hit_rate_stats */
-        case H5VL_NATIVE_FILE_RESET_MDC_HIT_RATE:
+        case H5VL_FILE_OPT_RESET_MDC_HIT_RATE:
             {
                 /* Reset the hit rate statistic */
                 if(H5AC_reset_cache_hit_rate_stats(f->shared->cache) < 0)
@@ -612,7 +603,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fset_mdc_config */
-        case H5VL_NATIVE_FILE_SET_MDC_CONFIG:
+        case H5VL_FILE_OPT_SET_MDC_CONFIG:
             {
                 H5AC_cache_config_t *config_ptr = HDva_arg(arguments, H5AC_cache_config_t *);
 
@@ -623,7 +614,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_metadata_read_retry_info */
-        case H5VL_NATIVE_FILE_GET_METADATA_READ_RETRY_INFO:
+        case H5VL_FILE_OPT_GET_METADATA_READ_RETRY_INFO:
             {
                 H5F_retry_info_t *info = HDva_arg(arguments, H5F_retry_info_t *);
 
@@ -634,7 +625,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fstart_swmr_write */
-        case H5VL_NATIVE_FILE_START_SWMR_WRITE:
+        case H5VL_FILE_OPT_START_SWMR_WRITE:
             {
                 if(H5F__start_swmr_write(f) < 0)
                     HGOTO_ERROR(H5E_CACHE, H5E_SYSTEM, FAIL, "can't start SWMR write")
@@ -643,7 +634,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fstart_mdc_logging */
-        case H5VL_NATIVE_FILE_START_MDC_LOGGING:
+        case H5VL_FILE_OPT_START_MDC_LOGGING:
             {
                 /* Call mdc logging function */
                 if(H5C_start_logging(f->shared->cache) < 0)
@@ -653,7 +644,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fstop_mdc_logging */
-        case H5VL_NATIVE_FILE_STOP_MDC_LOGGING:
+        case H5VL_FILE_OPT_STOP_MDC_LOGGING:
             {
                 /* Call mdc logging function */
                 if(H5C_stop_logging(f->shared->cache) < 0)
@@ -663,7 +654,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_mdc_logging_status */
-        case H5VL_NATIVE_FILE_GET_MDC_LOGGING_STATUS:
+        case H5VL_FILE_OPT_GET_MDC_LOGGING_STATUS:
             {
                 hbool_t *is_enabled             = HDva_arg(arguments, hbool_t *);
                 hbool_t *is_currently_logging   = HDva_arg(arguments, hbool_t *);
@@ -676,7 +667,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fformat_convert */
-        case H5VL_NATIVE_FILE_FORMAT_CONVERT:
+        case H5VL_FILE_OPT_FORMAT_CONVERT:
             {
                 /* Convert the format */
                 if(H5F__format_convert(f) < 0)
@@ -686,7 +677,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Freset_page_buffering_stats */
-        case H5VL_NATIVE_FILE_RESET_PAGE_BUFFERING_STATS:
+        case H5VL_FILE_OPT_RESET_PAGE_BUFFERING_STATS:
             {
                 /* Sanity check */
                 if(NULL == f->shared->page_buf)
@@ -700,7 +691,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_page_buffering_stats */
-        case H5VL_NATIVE_FILE_GET_PAGE_BUFFERING_STATS:
+        case H5VL_FILE_OPT_GET_PAGE_BUFFERING_STATS:
             {
                 unsigned *accesses      = HDva_arg(arguments, unsigned *);
                 unsigned *hits          = HDva_arg(arguments, unsigned *);
@@ -720,7 +711,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_mdc_image_info */
-        case H5VL_NATIVE_FILE_GET_MDC_IMAGE_INFO:
+        case H5VL_FILE_OPT_GET_MDC_IMAGE_INFO:
             {
                 haddr_t *image_addr = HDva_arg(arguments, haddr_t *);
                 hsize_t *image_len = HDva_arg(arguments, hsize_t *);
@@ -733,7 +724,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_eoa */
-        case H5VL_NATIVE_FILE_GET_EOA:
+        case H5VL_FILE_OPT_GET_EOA:
             {
                 haddr_t *eoa = HDva_arg(arguments, haddr_t *);
                 haddr_t rel_eoa;        /* Relative address of EOA */
@@ -758,7 +749,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fincrement_filesize */
-        case H5VL_NATIVE_FILE_INCR_FILESIZE:
+        case H5VL_FILE_OPT_INCR_FILESIZE:
             {
                 hsize_t increment = HDva_arg(arguments, hsize_t);
                 haddr_t max_eof_eoa;        /* Maximum of the relative EOA & EOF */
@@ -780,7 +771,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fset_latest_format, H5Fset_libver_bounds */
-        case H5VL_NATIVE_FILE_SET_LIBVER_BOUNDS:
+        case H5VL_FILE_OPT_SET_LIBVER_BOUNDS:
             {
                 H5F_libver_t low = (H5F_libver_t)HDva_arg(arguments, int); /* enum work-around */
                 H5F_libver_t high = (H5F_libver_t)HDva_arg(arguments, int); /* enum work-around */
@@ -793,7 +784,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fget_dset_no_attrs_hint */
-        case H5VL_NATIVE_FILE_GET_MIN_DSET_OHDR_FLAG:
+        case H5VL_FILE_OPT_GET_MIN_DSET_OHDR_FLAG:
             {
                 hbool_t *minimize = HDva_arg(arguments, hbool_t *);
                 *minimize = H5F_GET_MIN_DSET_OHDR(f);
@@ -801,7 +792,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fset_dset_no_attrs_hint */
-        case H5VL_NATIVE_FILE_SET_MIN_DSET_OHDR_FLAG:
+        case H5VL_FILE_OPT_SET_MIN_DSET_OHDR_FLAG:
             {
                 int minimize = HDva_arg(arguments, int);
                 if(H5F_set_min_dset_ohdr(f, (hbool_t)minimize) < 0)
@@ -811,7 +802,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
 
 #ifdef H5_HAVE_PARALLEL
         /* H5Fget_mpi_atomicity */
-        case H5VL_NATIVE_FILE_GET_MPI_ATOMICITY:
+        case H5VL_FILE_OPT_GET_MPI_ATOMICITY:
             {
                 hbool_t *flag = (hbool_t *)HDva_arg(arguments, hbool_t *);
                 if (H5F_get_mpi_atomicity(f, flag) < 0)
@@ -820,7 +811,7 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
             }
 
         /* H5Fset_mpi_atomicity */
-        case H5VL_NATIVE_FILE_SET_MPI_ATOMICITY:
+        case H5VL_FILE_OPT_SET_MPI_ATOMICITY:
             {
                 hbool_t flag = (hbool_t)HDva_arg(arguments, int);
                 if (H5F_set_mpi_atomicity(f, flag) < 0)
@@ -828,6 +819,15 @@ H5VL__native_file_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR
                 break;
             }
 #endif /* H5_HAVE_PARALLEL */
+
+        /* Finalize H5Fopen */
+        case H5VL_FILE_OPT_POST_OPEN:
+            {
+                /* Call package routine */
+                if(H5F__post_open((H5F_t *)obj) < 0)
+                    HGOTO_ERROR(H5E_FILE, H5E_CANTINIT, FAIL, "can't finish opening file")
+                break;
+            }
 
         default:
             HGOTO_ERROR(H5E_VOL, H5E_UNSUPPORTED, FAIL, "invalid optional operation")

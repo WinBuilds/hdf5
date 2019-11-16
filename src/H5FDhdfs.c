@@ -581,7 +581,9 @@ hid_t
 H5FD_hdfs_init(void)
 {
     hid_t ret_value = H5I_INVALID_HID; /* Return value */
+#if HDFS_STATS
     unsigned int bin_i;
+#endif
 
     FUNC_ENTER_NOAPI(FAIL)
 
@@ -589,12 +591,8 @@ H5FD_hdfs_init(void)
     HDfprintf(stdout, "H5FD_hdfs_init() called.\n");
 #endif
 
-    if (H5I_VFL != H5I_get_type(H5FD_HDFS_g)) {
-        H5FD_HDFS_g = H5FD_register(
-                &H5FD_hdfs_g,
-                sizeof(H5FD_class_t),
-                FALSE);
-    }
+    if(H5I_VFL != H5I_get_type(H5FD_HDFS_g))
+        H5FD_HDFS_g = H5FD_register( &H5FD_hdfs_g, sizeof(H5FD_class_t), FALSE);
 
 #if HDFS_STATS
     /* pre-compute statsbin boundaries
@@ -603,7 +601,7 @@ H5FD_hdfs_init(void)
         unsigned long long value = 0;
         HDFS_STATS_POW(bin_i, &value)
         hdfs_stats_boundaries[bin_i] = value;
-    }
+    } /* end for */
 #endif
 
     ret_value = H5FD_HDFS_g;

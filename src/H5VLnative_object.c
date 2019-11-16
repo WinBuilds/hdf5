@@ -364,10 +364,9 @@ done:
  *-------------------------------------------------------------------------
  */
 herr_t
-H5VL__native_object_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
-    void H5_ATTR_UNUSED **req, va_list arguments)
+H5VL__native_object_optional(void *obj, H5VL_object_optional_t optional_type,
+    hid_t H5_ATTR_UNUSED dxpl_id, void H5_ATTR_UNUSED **req, va_list arguments)
 {
-    H5VL_native_object_optional_t optional_type = HDva_arg(arguments, H5VL_native_object_optional_t);
     H5VL_loc_params_t *loc_params = HDva_arg(arguments, H5VL_loc_params_t *);
     H5G_loc_t   loc;                    /* Location of group */
     herr_t       ret_value = SUCCEED;    /* Return value */
@@ -379,7 +378,7 @@ H5VL__native_object_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
 
     switch(optional_type) {
         /* H5Oget_info / H5Oget_info_by_name / H5Oget_info_by_idx */
-        case H5VL_NATIVE_OBJECT_GET_INFO:
+        case H5VL_OBJECT_OPT_GET_INFO:
             {
                 H5O_info_t  *obj_info = HDva_arg(arguments, H5O_info_t *);
                 unsigned fields         = HDva_arg(arguments, unsigned);
@@ -427,7 +426,7 @@ H5VL__native_object_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
             }
 
         /* H5Oget_comment / H5Oget_comment_by_name */
-        case H5VL_NATIVE_OBJECT_GET_COMMENT:
+        case H5VL_OBJECT_OPT_GET_COMMENT:
             {
                 char     *comment =  HDva_arg(arguments, char *);
                 size_t   bufsize  =  HDva_arg(arguments, size_t);
@@ -448,7 +447,7 @@ H5VL__native_object_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
             }
 
         /* H5Oset_comment */
-        case H5VL_NATIVE_OBJECT_SET_COMMENT:
+        case H5VL_OBJECT_OPT_SET_COMMENT:
             {
                 const char    *comment  = HDva_arg(arguments, char *);
 
@@ -468,7 +467,7 @@ H5VL__native_object_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
             }
 
         /* H5Odisable_mdc_flushes */
-        case H5VL_NATIVE_OBJECT_DISABLE_MDC_FLUSHES:
+        case H5VL_OBJECT_OPT_DISABLE_MDC_FLUSHES:
             {
                 H5O_loc_t  *oloc = loc.oloc;
 
@@ -479,7 +478,7 @@ H5VL__native_object_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
             }
 
         /* H5Oenable_mdc_flushes */
-        case H5VL_NATIVE_OBJECT_ENABLE_MDC_FLUSHES:
+        case H5VL_OBJECT_OPT_ENABLE_MDC_FLUSHES:
             {
                 H5O_loc_t  *oloc = loc.oloc;
 
@@ -490,7 +489,7 @@ H5VL__native_object_optional(void *obj, hid_t H5_ATTR_UNUSED dxpl_id,
             }
 
         /* H5Oare_mdc_flushes_disabled */
-        case H5VL_NATIVE_OBJECT_ARE_MDC_FLUSHES_DISABLED:
+        case H5VL_OBJECT_OPT_ARE_MDC_FLUSHES_DISABLED:
             {
                 H5O_loc_t  *oloc = loc.oloc;
                 hbool_t *are_disabled = (hbool_t *)HDva_arg(arguments, hbool_t *);

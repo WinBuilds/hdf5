@@ -2605,6 +2605,25 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                             } /* end switch */
                         } /* end else */
                         break;
+
+                    case 'A':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_blob_optional_t optional = (H5VL_blob_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
                     case 'b':
                         if(ptr) {
                             if(vp)
@@ -3073,6 +3092,350 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                             } /* end switch */
                         } /* end else */
                         break;
+
+                    case 's':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_attr_optional_t optional = (H5VL_attr_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+#ifndef H5_NO_DEPRECATED_SYMBOLS
+                                case H5VL_ATTR_OPT_ITERATE_OLD:
+                                    HDfprintf(out, "H5VL_ATTR_OPT_ITERATE_OLD");
+                                    break;
+#endif /* H5_NO_DEPRECATED_SYMBOLS */
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
+                    case 'S':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_subclass_t subclass = (H5VL_subclass_t)HDva_arg(ap, int);
+
+                            switch(subclass) {
+                                case H5VL_SUBCLS_NONE:
+                                    HDfprintf(out, "H5VL_SUBCLS_NONE");
+                                    break;
+                                case H5VL_SUBCLS_INFO:
+                                    HDfprintf(out, "H5VL_SUBCLS_INFO");
+                                    break;
+                                case H5VL_SUBCLS_WRAP:
+                                    HDfprintf(out, "H5VL_SUBCLS_WRAP");
+                                    break;
+                                case H5VL_SUBCLS_ATTR:
+                                    HDfprintf(out, "H5VL_SUBCLS_ATTR");
+                                    break;
+                                case H5VL_SUBCLS_DATASET:
+                                    HDfprintf(out, "H5VL_SUBCLS_DATASET");
+                                    break;
+                                case H5VL_SUBCLS_DATATYPE:
+                                    HDfprintf(out, "H5VL_SUBCLS_DATATYPE");
+                                    break;
+                                case H5VL_SUBCLS_FILE:
+                                    HDfprintf(out, "H5VL_SUBCLS_FILE");
+                                    break;
+                                case H5VL_SUBCLS_GROUP:
+                                    HDfprintf(out, "H5VL_SUBCLS_GROUP");
+                                    break;
+                                case H5VL_SUBCLS_LINK:
+                                    HDfprintf(out, "H5VL_SUBCLS_LINK");
+                                    break;
+                                case H5VL_SUBCLS_OBJECT:
+                                    HDfprintf(out, "H5VL_SUBCLS_OBJECT");
+                                    break;
+                                case H5VL_SUBCLS_REQUEST:
+                                    HDfprintf(out, "H5VL_SUBCLS_REQUEST");
+                                    break;
+                                case H5VL_SUBCLS_BLOB:
+                                    HDfprintf(out, "H5VL_SUBCLS_BLOB");
+                                    break;
+                                default:
+                                    HDfprintf(out, "%ld", (long)subclass);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
+                    case 't':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_dataset_optional_t optional = (H5VL_dataset_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+                                case H5VL_DATASET_OPT_FORMAT_CONVERT:
+                                    HDfprintf(out, "H5VL_DATASET_OPT_FORMAT_CONVERT");
+                                    break;
+                                case H5VL_DATASET_OPT_GET_CHUNK_INDEX_TYPE:
+                                    HDfprintf(out, "H5VL_DATASET_OPT_GET_CHUNK_INDEX_TYPE");
+                                    break;
+                                case H5VL_DATASET_OPT_GET_CHUNK_STORAGE_SIZE:
+                                    HDfprintf(out, "H5VL_DATASET_OPT_GET_CHUNK_STORAGE_SIZE");
+                                    break;
+                                case H5VL_DATASET_OPT_GET_NUM_CHUNKS:
+                                    HDfprintf(out, "H5VL_DATASET_OPT_GET_NUM_CHUNKS");
+                                    break;
+                                case H5VL_DATASET_OPT_GET_CHUNK_INFO_BY_IDX:
+                                    HDfprintf(out, "H5VL_DATASET_OPT_GET_CHUNK_INFO_BY_IDX");
+                                    break;
+                                case H5VL_DATASET_OPT_GET_CHUNK_INFO_BY_COORD:
+                                    HDfprintf(out, "H5VL_DATASET_OPT_GET_CHUNK_INFO_BY_COORD");
+                                    break;
+                                case H5VL_DATASET_OPT_CHUNK_READ:
+                                    HDfprintf(out, "H5VL_DATASET_OPT_CHUNK_READ");
+                                    break;
+                                case H5VL_DATASET_OPT_CHUNK_WRITE:
+                                    HDfprintf(out, "H5VL_DATASET_OPT_CHUNK_WRITE");
+                                    break;
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
+                    case 'u':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_datatype_optional_t optional = (H5VL_datatype_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
+                    case 'v':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_file_optional_t optional = (H5VL_file_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+                                case H5VL_FILE_OPT_CLEAR_ELINK_CACHE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_CLEAR_ELINK_CACHE");
+                                    break;
+                                case H5VL_FILE_OPT_GET_FILE_IMAGE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_FILE_IMAGE");
+                                    break;
+                                case H5VL_FILE_OPT_GET_FREE_SECTIONS:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_FREE_SECTIONS");
+                                    break;
+                                case H5VL_FILE_OPT_GET_FREE_SPACE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_FREE_SPACE");
+                                    break;
+                                case H5VL_FILE_OPT_GET_INFO:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_INFO");
+                                    break;
+                                case H5VL_FILE_OPT_GET_MDC_CONF:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_MDC_CONF");
+                                    break;
+                                case H5VL_FILE_OPT_GET_MDC_HR:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_MDC_HR");
+                                    break;
+                                case H5VL_FILE_OPT_GET_MDC_SIZE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_MDC_SIZE");
+                                    break;
+                                case H5VL_FILE_OPT_GET_SIZE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_SIZE");
+                                    break;
+                                case H5VL_FILE_OPT_GET_VFD_HANDLE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_VFD_HANDLE");
+                                    break;
+                                case H5VL_FILE_OPT_GET_FILE_ID:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_FILE_ID");
+                                    break;
+                                case H5VL_FILE_OPT_RESET_MDC_HIT_RATE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_RESET_MDC_HIT_RATE");
+                                    break;
+                                case H5VL_FILE_OPT_SET_MDC_CONFIG:
+                                    HDfprintf(out, "H5VL_FILE_OPT_SET_MDC_CONFIG");
+                                    break;
+                                case H5VL_FILE_OPT_GET_METADATA_READ_RETRY_INFO:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_METADATA_READ_RETRY_INFO");
+                                    break;
+                                case H5VL_FILE_OPT_START_SWMR_WRITE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_START_SWMR_WRITE");
+                                    break;
+                                case H5VL_FILE_OPT_START_MDC_LOGGING:
+                                    HDfprintf(out, "H5VL_FILE_OPT_START_MDC_LOGGING");
+                                    break;
+                                case H5VL_FILE_OPT_STOP_MDC_LOGGING:
+                                    HDfprintf(out, "H5VL_FILE_OPT_STOP_MDC_LOGGING");
+                                    break;
+                                case H5VL_FILE_OPT_GET_MDC_LOGGING_STATUS:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_MDC_LOGGING_STATUS");
+                                    break;
+                                case H5VL_FILE_OPT_FORMAT_CONVERT:
+                                    HDfprintf(out, "H5VL_FILE_OPT_FORMAT_CONVERT");
+                                    break;
+                                case H5VL_FILE_OPT_RESET_PAGE_BUFFERING_STATS:
+                                    HDfprintf(out, "H5VL_FILE_OPT_RESET_PAGE_BUFFERING_STATS");
+                                    break;
+                                case H5VL_FILE_OPT_GET_PAGE_BUFFERING_STATS:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_PAGE_BUFFERING_STATS");
+                                    break;
+                                case H5VL_FILE_OPT_GET_MDC_IMAGE_INFO:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_MDC_IMAGE_INFO");
+                                    break;
+                                case H5VL_FILE_OPT_GET_EOA:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_EOA");
+                                    break;
+                                case H5VL_FILE_OPT_INCR_FILESIZE:
+                                    HDfprintf(out, "H5VL_FILE_OPT_INCR_FILESIZE");
+                                    break;
+                                case H5VL_FILE_OPT_SET_LIBVER_BOUNDS:
+                                    HDfprintf(out, "H5VL_FILE_OPT_SET_LIBVER_BOUNDS");
+                                    break;
+                                case H5VL_FILE_OPT_GET_MIN_DSET_OHDR_FLAG:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_MIN_DSET_OHDR_FLAG");
+                                    break;
+                                case H5VL_FILE_OPT_SET_MIN_DSET_OHDR_FLAG:
+                                    HDfprintf(out, "H5VL_FILE_OPT_SET_MIN_DSET_OHDR_FLAG");
+                                    break;
+                                case H5VL_FILE_OPT_GET_MPI_ATOMICITY:
+                                    HDfprintf(out, "H5VL_FILE_OPT_GET_MPI_ATOMICITY");
+                                    break;
+                                case H5VL_FILE_OPT_SET_MPI_ATOMICITY:
+                                    HDfprintf(out, "H5VL_FILE_OPT_SET_MPI_ATOMICITY");
+                                    break;
+                                case H5VL_FILE_OPT_POST_OPEN:
+                                    HDfprintf(out, "H5VL_FILE_OPT_POST_OPEN");
+                                    break;
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
+                    case 'w':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_group_optional_t optional = (H5VL_group_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+#ifndef H5_NO_DEPRECATED_SYMBOLS
+                                case H5VL_GROUP_OPT_ITERATE_OLD:
+                                    HDfprintf(out, "H5VL_GROUP_OPT_ITERATE_OLD");
+                                    break;
+                                case H5VL_GROUP_OPT_GET_OBJINFO:
+                                    HDfprintf(out, "H5VL_GROUP_OPT_GET_OBJINFO");
+                                    break;
+#endif /* H5_NO_DEPRECATED_SYMBOLS */
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
+                    case 'x':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_link_optional_t optional = (H5VL_link_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
+                    case 'y':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_object_optional_t optional = (H5VL_object_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+                                case H5VL_OBJECT_OPT_GET_COMMENT:
+                                    HDfprintf(out, "H5VL_OBJECT_OPT_GET_COMMENT");
+                                    break;
+                                case H5VL_OBJECT_OPT_GET_INFO:
+                                    HDfprintf(out, "H5VL_OBJECT_OPT_GET_INFO");
+                                    break;
+                                case H5VL_OBJECT_OPT_SET_COMMENT:
+                                    HDfprintf(out, "H5VL_OBJECT_OPT_SET_COMMENT");
+                                    break;
+                                case H5VL_OBJECT_OPT_DISABLE_MDC_FLUSHES:
+                                    HDfprintf(out, "H5VL_OBJECT_OPT_DISABLE_MDC_FLUSHES");
+                                    break;
+                                case H5VL_OBJECT_OPT_ENABLE_MDC_FLUSHES:
+                                    HDfprintf(out, "H5VL_OBJECT_OPT_ENABLE_MDC_FLUSHES");
+                                    break;
+                                case H5VL_OBJECT_OPT_ARE_MDC_FLUSHES_DISABLED:
+                                    HDfprintf(out, "H5VL_OBJECT_OPT_ARE_MDC_FLUSHES_DISABLED");
+                                    break;
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
+                    case 'z':
+                        if(ptr) {
+                            if(vp)
+                                HDfprintf (out, "0x%lx", (unsigned long)vp);
+                            else
+                                HDfprintf(out, "NULL");
+                        } /* end if */
+                        else {
+                            H5VL_request_optional_t optional = (H5VL_request_optional_t)HDva_arg(ap, int);
+
+                            switch(optional) {
+                                default:
+                                    HDfprintf(out, "%ld", (long)optional);
+                                    break;
+                            } /* end switch */
+                        } /* end else */
+                        break;
+
                     default:
                         HDfprintf(out, "BADTYPE(Z%c)", type[1]);
                         goto error;

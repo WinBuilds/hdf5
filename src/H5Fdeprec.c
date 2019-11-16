@@ -120,7 +120,7 @@ H5Fget_info1(hid_t obj_id, H5F_info1_t *finfo)
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "invalid object identifier")
 
     /* Get the file information */
-    if(H5VL_file_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_FILE_GET_INFO, type, &finfo2) < 0)
+    if(H5VL_file_optional(vol_obj, H5VL_FILE_OPT_GET_INFO, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, type, &finfo2) < 0)
         HGOTO_ERROR(H5E_FILE, H5E_CANTGET, FAIL, "unable to retrieve file info")
 
     /* Copy the compatible fields into the older struct */
@@ -227,7 +227,7 @@ H5Fset_latest_format(hid_t file_id, hbool_t latest_format)
         low = H5F_LIBVER_EARLIEST;
 
     /* Set the library's version bounds */
-    if(H5VL_file_optional(vol_obj, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, H5VL_NATIVE_FILE_SET_LIBVER_BOUNDS, (int)low, (int)high) < 0)
+    if(H5VL_file_optional(vol_obj, H5VL_FILE_OPT_SET_LIBVER_BOUNDS, H5P_DATASET_XFER_DEFAULT, H5_REQUEST_NULL, (int)low, (int)high) < 0)
         HGOTO_ERROR(H5E_FILE, H5E_CANTSET, FAIL, "can't set library version bounds")
 
 done:

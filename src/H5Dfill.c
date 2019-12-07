@@ -172,8 +172,8 @@ done:
     on each element so that each of them has a copy of the VL data.
 --------------------------------------------------------------------------*/
 herr_t
-H5D__fill(const void *fill, const H5T_t *fill_type, void *buf,
-          const H5T_t *buf_type, const H5S_t *space, hid_t dxpl_id)
+H5D__fill(void *fill, H5T_t *fill_type, void *buf,
+          H5T_t *buf_type,H5S_t *space, hid_t dxpl_id)
 {
     H5S_sel_iter_t *mem_iter = NULL; /* Memory selection iteration info */
     hbool_t mem_iter_init = FALSE; /* Whether the memory selection iterator has been initialized */

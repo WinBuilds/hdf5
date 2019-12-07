@@ -137,7 +137,7 @@ H5FL_SEQ_DEFINE(H5A_t_ptr);
  *-------------------------------------------------------------------------
  */
 H5A_t *
-H5A_create(const H5G_loc_t *loc, const char *name, const H5T_t *type,
+H5A_create(const H5G_loc_t *loc, const char *name, H5T_t *type,
     const H5S_t *space, hid_t acpl_id, hid_t dxpl_id)
 {
     H5A_t	*attr = NULL;           /* Attribute created */
@@ -488,7 +488,7 @@ done:
     This function reads a complete attribute from disk.
 --------------------------------------------------------------------------*/
 herr_t
-H5A__read(const H5A_t *attr, const H5T_t *mem_type, void *buf, hid_t dxpl_id)
+H5A__read(const H5A_t *attr, H5T_t *mem_type, void *buf, hid_t dxpl_id)
 {
     uint8_t		*tconv_buf = NULL;	/* datatype conv buffer*/
     uint8_t		*bkg_buf = NULL;	/* background buffer */
@@ -591,7 +591,7 @@ done:
     This function writes a complete attribute to disk.
 --------------------------------------------------------------------------*/
 herr_t
-H5A__write(H5A_t *attr, const H5T_t *mem_type, const void *buf, hid_t dxpl_id)
+H5A__write(H5A_t *attr, H5T_t *mem_type, const void *buf, hid_t dxpl_id)
 {
     uint8_t		*tconv_buf = NULL;	/* datatype conv buffer */
     hbool_t             tconv_owned = FALSE;    /* Whether the datatype conv buffer is owned by attribute */

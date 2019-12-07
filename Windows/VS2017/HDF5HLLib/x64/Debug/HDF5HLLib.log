@@ -1,0 +1,18 @@
+﻿  H5DO.c
+  H5DS.c
+  H5IM.c
+  H5LD.c
+  H5LT.c
+  H5LTanalyze.c
+  H5LTparse.c
+  H5PT.c
+  H5TB.c
+d:\projects\winbuilds\hdf5\hl\src\h5hlprivate2.h(18): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5IM.c)
+d:\projects\winbuilds\hdf5\hl\src\h5hlprivate2.h(18): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5PT.c)
+d:\projects\winbuilds\hdf5\hl\src\h5hlprivate2.h(18): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5TB.c)
+d:\projects\winbuilds\hdf5\hl\src\h5hlprivate2.h(18): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5DS.c)
+d:\projects\winbuilds\hdf5\hl\src\h5hlprivate2.h(18): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5DO.c)
+hl/src/H5LTparse.y(25): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5LTparse.c)
+d:\projects\winbuilds\hdf5\hl\src\h5hlprivate2.h(18): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5LD.c)
+hl/src/H5LTanalyze.l(25): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5LTanalyze.c)
+d:\projects\winbuilds\hdf5\hl\src\h5hlprivate2.h(18): fatal error C1083: Cannot open include file: 'hdf5.h': No such file or directory (compiling source file ..\..\..\hl\src\H5LT.c)

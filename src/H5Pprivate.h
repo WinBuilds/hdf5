@@ -200,7 +200,7 @@ H5_DLL H5P_genplist_t *H5P_object_verify(hid_t plist_id, hid_t pclass_id);
 /* Private DCPL routines */
 H5_DLL herr_t H5P_fill_value_defined(H5P_genplist_t *plist,
     H5D_fill_value_t *status);
-H5_DLL herr_t H5P_get_fill_value(H5P_genplist_t *plist, const struct H5T_t *type,
+H5_DLL herr_t H5P_get_fill_value(H5P_genplist_t *plist, struct H5T_t *type,
     void *value, hid_t dxpl_id);
 
 #endif /* _H5Pprivate_H */

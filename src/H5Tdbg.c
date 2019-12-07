@@ -424,8 +424,8 @@ H5T_debug(const H5T_t *dt, FILE *stream)
 
 	    fprintf(stream, "\n\"%s\" = 0x", dt->shared->u.enumer.name[i]);
 	    for(k = 0; k < base_size; k++)
-		fprintf(stream, "%02lx",
-			(unsigned long)(dt->shared->u.enumer.value + (i * base_size) + k));
+		fprintf(stream, "%02llx",
+			(unsigned long long)(dt->shared->u.enumer.value + (i * base_size) + k));
 	} /* end for */
 	fprintf(stream, "\n");
     } else if(H5T_OPAQUE == dt->shared->type) {

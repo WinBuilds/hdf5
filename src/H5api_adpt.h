@@ -33,8 +33,13 @@
   #endif
 #else
   #if defined (_MSC_VER)  /* MSVC Compiler Case */
-    #define H5_DLL __declspec(dllimport)
-    #define H5_DLLVAR __declspec(dllimport)
+   #if defined (BUILD_STATIC)
+      #define H5_DLL
+      #define H5_DLLVAR
+   #else
+      #define H5_DLL __declspec(dllimport)
+      #define H5_DLLVAR __declspec(dllimport)
+   #endif
   #elif (__GNUC__ >= 4)  /* GCC 4.x has support for visibility options */
     #define H5_DLL __attribute__ ((visibility("default")))
     #define H5_DLLVAR extern __attribute__ ((visibility("default")))
@@ -102,8 +107,13 @@
   #endif
 #else
   #if defined (_MSC_VER)  /* MSVC Compiler Case */
-    #define H5_DLLCPP __declspec(dllimport)
-    #define H5_DLLCPPVAR __declspec(dllimport)
+    #if defined (BUILD_STATIC)
+         #define H5_DLLCPP
+         #define H5_DLLCPPVAR
+    #else
+      #define H5_DLLCPP __declspec(dllimport)
+      #define H5_DLLCPPVAR __declspec(dllimport)
+    #endif
   #elif (__GNUC__ >= 4)  /* GCC 4.x has support for visibility options */
     #define H5_DLLCPP __attribute__ ((visibility("default")))
     #define H5_DLLCPPVAR extern __attribute__ ((visibility("default")))

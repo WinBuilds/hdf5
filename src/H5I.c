@@ -742,7 +742,7 @@ done:
  *-------------------------------------------------------------------------
  */
 hid_t
-H5I_register(H5I_type_t type, const void *object, hbool_t app_ref)
+H5I_register(H5I_type_t type, void *object, hbool_t app_ref)
 {
     H5I_id_type_t	*type_ptr;	/*ptr to the type		*/
     H5I_id_info_t	*id_ptr;	/*ptr to the new ID information */

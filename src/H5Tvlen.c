@@ -119,7 +119,7 @@ done:
  *-------------------------------------------------------------------------
  */
 H5T_t *
-H5T__vlen_create(const H5T_t *base)
+H5T__vlen_create(H5T_t *base)
 {
     H5T_t	*dt = NULL;		/* New VL datatype */
     H5T_t	*ret_value = NULL;	/* Return value */

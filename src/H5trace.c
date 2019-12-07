@@ -247,7 +247,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'a':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -261,7 +261,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'b':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                     } /* end if */
@@ -280,7 +280,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'd':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -296,7 +296,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'a':
                         if(ptr) {
                             if(vp)
-                                fprintf (out, "0x%lx", (unsigned long)vp);
+                                fprintf (out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -334,7 +334,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'c':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -360,7 +360,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'f':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -394,7 +394,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'F':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -428,7 +428,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'h':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -458,7 +458,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'i':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -496,7 +496,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'k':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -542,7 +542,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'l':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -584,7 +584,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'n':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -635,7 +635,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'o':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -665,7 +665,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 's':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -699,7 +699,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -725,7 +725,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'v':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -761,7 +761,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'e':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -780,7 +780,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'd':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -806,21 +806,21 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'e':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
                         else {
                             H5E_error2_t *error = va_arg(ap, H5E_error2_t *); /*lint !e64 Type mismatch not really occuring */
 
-                            fprintf(out, "0x%lx", (unsigned long)error);
+                            fprintf(out, "0x%llx", (unsigned long long)error);
                         } /* end else */
                         break;
 
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -854,7 +854,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'd':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -888,7 +888,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'f':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -923,7 +923,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'm':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -974,7 +974,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 's':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1000,7 +1000,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1009,7 +1009,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'v':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1044,7 +1044,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'o':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1092,14 +1092,14 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 's':
                         if(ptr) {
                             if(vp)
-                                fprintf (out, "0x%lx", (unsigned long)vp);
+                                fprintf (out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
                         else {
                             H5G_stat_t *statbuf = va_arg(ap, H5G_stat_t*); /*lint !e64 Type mismatch not really occuring */
 
-                            fprintf(out, "0x%lx", (unsigned long)statbuf);
+                            fprintf(out, "0x%llx", (unsigned long long)statbuf);
                         }
                         break;
 #endif /* H5_NO_DEPRECATED_SYMBOLS */
@@ -1113,7 +1113,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'h':
                 if(ptr) {
                     if(vp) {
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                         if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                             hsize_t *p = (hsize_t *)vp;
 
@@ -1147,7 +1147,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 's':
                         if(ptr) {
                             if(vp) {
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                                 if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                                     hssize_t *p = (hssize_t *)vp;
 
@@ -1177,7 +1177,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'i':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -1365,7 +1365,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'i':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1399,7 +1399,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'o':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1437,7 +1437,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 's':
                         if(ptr) {
                             if(vp) {
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                                 if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                                     int *p = (int*)vp;
 
@@ -1461,7 +1461,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1543,7 +1543,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'u':
                         if(ptr) {
                             if(vp) {
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                                 if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                                     unsigned *p = (unsigned*)vp;
 
@@ -1575,7 +1575,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'l':
                         if(ptr) {
                             if(vp)
-                                fprintf (out, "0x%lx", (unsigned long)vp);
+                                fprintf (out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1621,7 +1621,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'c':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1637,7 +1637,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'i':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1653,7 +1653,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1712,7 +1712,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'o':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -1728,7 +1728,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1772,7 +1772,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'p':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -1796,7 +1796,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'r':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -1812,7 +1812,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1854,7 +1854,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'c':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1888,7 +1888,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 's':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1946,7 +1946,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -1994,7 +1994,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 's':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -2010,7 +2010,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'c':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2057,7 +2057,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'd':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2087,7 +2087,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'e':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2117,7 +2117,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'n':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2151,7 +2151,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'o':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2193,7 +2193,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'p':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2231,7 +2231,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 's':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2265,7 +2265,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 't':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2335,7 +2335,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'z':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2391,7 +2391,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 't':
                 if(ptr) {
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end if */
@@ -2412,7 +2412,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'l':
                         if(ptr) {
                             if(vp) {
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                                 if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                                     unsigned long *p = (unsigned long *)vp;
 
@@ -2436,7 +2436,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'L':
                         if(ptr) {
                             if(vp) {
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                                 if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                                     unsigned long long *p = (unsigned long long *)vp;
 
@@ -2466,14 +2466,14 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'x':
                 if(ptr) {
                     if(vp) {
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                         if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                             void **p = (void**)vp;
 
                             fprintf(out, " {");
                             for(i = 0; i < asize[asize_idx]; i++) {
                                 if(p[i])
-                                    fprintf(out, "%s0x%lx", (i ? ", " : ""), (unsigned long)(p[i]));
+                                    fprintf(out, "%s0x%llx", (i ? ", " : ""), (unsigned long long)(p[i]));
                                 else
                                     fprintf(out, "%sNULL", (i ? ", " : ""));
                             } /* end for */
@@ -2487,7 +2487,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     vp = va_arg (ap, void *); /*lint !e64 Type mismatch not really occuring */
 
                     if(vp)
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                     else
                         fprintf(out, "NULL");
                 } /* end else */
@@ -2496,7 +2496,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
             case 'z':
                 if(ptr) {
                     if(vp) {
-                        fprintf(out, "0x%lx", (unsigned long)vp);
+                        fprintf(out, "0x%llx", (unsigned long long)vp);
                         if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                             size_t *p = (size_t *)vp;
 
@@ -2522,7 +2522,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'a':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2552,21 +2552,21 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'c':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
                         else {
                             H5Z_class2_t *filter = va_arg(ap, H5Z_class2_t*); /*lint !e64 Type mismatch not really occuring */
 
-                            fprintf(out, "0x%lx", (unsigned long)filter);
+                            fprintf(out, "0x%llx", (unsigned long long)filter);
                         } /* end else */
                         break;
 
                     case 'e':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2585,7 +2585,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 'f':
                         if(ptr) {
                             if(vp)
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                             else
                                 fprintf(out, "NULL");
                         } /* end if */
@@ -2602,7 +2602,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
                     case 's':
                         if(ptr) {
                             if(vp) {
-                                fprintf(out, "0x%lx", (unsigned long)vp);
+                                fprintf(out, "0x%llx", (unsigned long long)vp);
                                 if(asize_idx >= 0 && asize[asize_idx] >= 0) {
                                     ssize_t *p = (ssize_t *)vp;
 

@@ -1291,7 +1291,7 @@ H5_DLL hbool_t H5T__bit_dec(uint8_t *buf, size_t start, size_t size);
 H5_DLL void H5T__bit_neg(uint8_t *buf, size_t start, size_t size);
 
 /* VL functions */
-H5_DLL H5T_t * H5T__vlen_create(const H5T_t *base);
+H5_DLL H5T_t * H5T__vlen_create(H5T_t *base);
 H5_DLL htri_t H5T__vlen_set_loc(const H5T_t *dt, H5F_t *f, H5T_loc_t loc);
 
 /* Array functions */

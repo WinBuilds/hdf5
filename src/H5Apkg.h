@@ -183,7 +183,7 @@ H5_DLLVAR const H5B2_class_t H5A_BT2_CORDER[1];
 
 /* Function prototypes for H5A package scope */
 H5_DLL H5A_t *H5A_create(const H5G_loc_t *loc, const char *name,
-    const H5T_t *type, const H5S_t *space, hid_t acpl_id, hid_t dxpl_id);
+    H5T_t *type, const H5S_t *space, hid_t acpl_id, hid_t dxpl_id);
 H5_DLL H5A_t *H5A_open_by_name(const H5G_loc_t *loc, const char *obj_name,
     const char *attr_name, hid_t lapl_id, hid_t dxpl_id);
 H5_DLL H5A_t *H5A_open_by_idx(const H5G_loc_t *loc, const char *obj_name,
@@ -200,8 +200,8 @@ H5_DLL herr_t H5A_rename_by_name(H5G_loc_t loc, const char *obj_name, const char
     const char *new_attr_name, hid_t lapl_id, hid_t dxpl_id);
 H5_DLL htri_t H5A_exists_by_name(H5G_loc_t loc, const char *obj_name, const char *attr_name,
     hid_t lapl_id, hid_t dxpl_id);
-H5_DLL herr_t H5A__write(H5A_t *attr, const H5T_t *mem_type, const void *buf, hid_t dxpl_id);
-H5_DLL herr_t H5A__read(const H5A_t *attr, const H5T_t *mem_type, void *buf, hid_t dxpl_id);
+H5_DLL herr_t H5A__write(H5A_t *attr, H5T_t *mem_type, const void *buf, hid_t dxpl_id);
+H5_DLL herr_t H5A__read(const H5A_t *attr, H5T_t *mem_type, void *buf, hid_t dxpl_id);
 H5_DLL ssize_t H5A__get_name(H5A_t *attr, size_t buf_size, char *buf);
 
 /* Attribute "dense" storage routines */

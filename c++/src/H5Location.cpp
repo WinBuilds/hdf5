@@ -89,12 +89,12 @@ bool H5Location::exists(const char* name, const LinkAccPropList& lapl) const
     htri_t ret_value = H5Lexists(getId(), name, lapl.getId());
     if (ret_value > 0)
         return true;
-    else if (ret_value == 0)
-        return false;
-    else // Raise exception when H5Lexists returns a negative value
-    {
-        throwException("exists", "H5Lexists failed");
-    }
+    
+    // Raise exception when H5Lexists returns a negative value
+    if (ret_value < 0)
+      throwException("exists", "H5Lexists failed");
+
+    return false;
 }
 
 //--------------------------------------------------------------------------

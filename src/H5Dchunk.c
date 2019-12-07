@@ -5587,8 +5587,8 @@ done:
 herr_t
 H5D__chunk_copy(H5F_t *f_src, H5O_storage_chunk_t *storage_src,
     H5O_layout_chunk_t *layout_src, H5F_t *f_dst, H5O_storage_chunk_t *storage_dst,
-    const H5S_extent_t *ds_extent_src, const H5T_t *dt_src,
-    const H5O_pline_t *pline_src, H5O_copy_t *cpy_info, hid_t dxpl_id)
+    H5S_extent_t *ds_extent_src, H5T_t *dt_src,
+    H5O_pline_t *pline_src, H5O_copy_t *cpy_info, hid_t dxpl_id)
 {
     H5D_chunk_it_ud3_t udata;           /* User data for iteration callback */
     H5D_chk_idx_info_t idx_info_dst;    /* Dest. chunked index info */
@@ -5597,7 +5597,7 @@ H5D__chunk_copy(H5F_t *f_src, H5O_storage_chunk_t *storage_src,
     hsize_t     curr_dims[H5O_LAYOUT_NDIMS]; /* Curr. size of dataset dimensions */
     hsize_t     max_dims[H5O_LAYOUT_NDIMS]; /* Curr. size of dataset dimensions */
     H5O_pline_t _pline;                 /* Temporary pipeline info */
-    const H5O_pline_t *pline;           /* Pointer to pipeline info to use */
+    H5O_pline_t *pline;           /* Pointer to pipeline info to use */
     H5T_path_t  *tpath_src_mem = NULL, *tpath_mem_dst = NULL;   /* Datatype conversion paths */
     hid_t       tid_src = -1;           /* Datatype ID for source datatype */
     hid_t       tid_dst = -1;           /* Datatype ID for destination datatype */
